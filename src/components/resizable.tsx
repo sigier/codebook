@@ -13,23 +13,18 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   const [width, setWidth] = useState(window.innerWidth * 0.75);
 
   useEffect(() => {
-
     let timer: any;
-
     const listener = () => {
-
-        if (timer){
-            clearTimeout(timer);
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        setInnerHeight(window.innerHeight);
+        setInnerWidth(window.innerWidth);
+        if (window.innerWidth * 0.75 < width) {
+          setWidth(window.innerWidth * 0.75);
         }
-
-        timer = setTimeout(()=>{
-            setInnerHeight(window.innerHeight);
-            setInnerWidth(window.innerWidth);
-
-            if (window.innerWidth * 0.75 < width){
-                setWidth(window.innerWidth * 0.75);
-            }
-        }, 100);  
+      }, 100);
     };
     window.addEventListener('resize', listener);
 
@@ -48,7 +43,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
       resizeHandles: ['e'],
       onResizeStop: (event, data) => {
         setWidth(data.size.width);
-      }
+      },
     };
   } else {
     resizableProps = {
