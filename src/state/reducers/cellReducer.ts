@@ -1,9 +1,7 @@
-import { Immer } from 'immer';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 import { Cell } from '../cell';
 import produce from 'immer';
-import { getBreaksNeededForEmptyLineAfter } from '@uiw/react-md-editor/lib/cjs/utils/markdownUtils';
 
 interface CellsState{
     loading: boolean;
